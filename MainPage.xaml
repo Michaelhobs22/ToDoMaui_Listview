@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ToDoMaui_Listview.MainPage"
+             BackgroundColor="White">
+
+    <VerticalStackLayout Spacing="10" Padding="10">
+
+        <Entry x:Name="titleEntry"
+               Placeholder="Title"
+               MaxLength="50" />
+
+        <Editor x:Name="detailsEditor"
+                Placeholder="Details"
+                HeightRequest="100"
+                MaxLength="240" />
+
+        <Button x:Name="addBtn"
+                Text="Add"
+                BackgroundColor="LightBlue"
+                Clicked="AddToDoItem" />
+
+        <Button x:Name="editBtn"
+                Text="Edit"
+                BackgroundColor="LightGray"
+                IsVisible="False"
+                Clicked="EditToDoItem" />
+
+        <Button x:Name="cancelBtn"
+                Text="Cancel Edit"
+                BackgroundColor="LightCoral"
+                IsVisible="False"
+                Clicked="CancelEdit" />
+
+        <ListView x:Name="todoLV"
+                  HasUnevenRows="True"
+                  ItemSelected="TodoLV_OnItemSelected">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+
+                            <StackLayout>
+                                <Label Text="{Binding title}"
+                                       FontAttributes="Bold" />
+                                <Label Text="{Binding detail}"
+                                       FontSize="13" />
+                            </StackLayout>
+
+                            <Button Grid.Column="1"
+                                    Text="Delete"
+                                    BackgroundColor="LightCoral"
+                                    ClassId="{Binding id}"
+                                    Clicked="DeleteToDoItem" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+
+    </VerticalStackLayout>
+
+</ContentPage>
